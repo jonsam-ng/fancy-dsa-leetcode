@@ -1,49 +1,29 @@
+const values = {
+  M: 1000,
+  CM: 900,
+  D: 500,
+  CD: 400,
+  C: 100,
+  XC: 90,
+  L: 50,
+  XL: 40,
+  X: 10,
+  IX: 9,
+  V: 5,
+  IV: 4,
+  I: 1
+};
+const orders = ["M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"];
+
 var intToRoman = function (num) {
-  const special = {
-    4: "IV",
-    9: "IX",
-    40: "XL",
-    90: "XC",
-    400: "CD",
-    900: "CM"
-  };
-  const base = [{
-    b: 1,
-    c: "I"
-  }, {
-    b: 5,
-    c: "V"
-  }, {
-    b: 10,
-    c: "X"
-  }, {
-    b: 50,
-    c: "L"
-  }, {
-    b: 100,
-    c: "C"
-  }, {
-    b: 500,
-    c: "D"
-  }, {
-    b: 1000,
-    c: "M"
-  }];
-  if (special[String(num)]) return special[String(num)];
-  return base.reverse().reduce((rst, {
-    b,
-    c
-  }) => {
-    const hb = String(num)[0] + "0".repeat(String(num).length - 1);
+  let roman = "";
 
-    if (special[hb]) {
-      rst += special[hb];
-      num = num - Number(hb);
-    } else {
-      rst += c.repeat(~~(num / b));
-      num = num % b;
+  for (const symbol of orders) {
+    while (num >= values[symbol]) {
+      roman += symbol;
+      num -= values[symbol];
     }
+  }
 
-    return rst;
-  }, "");
+  return roman;
 };

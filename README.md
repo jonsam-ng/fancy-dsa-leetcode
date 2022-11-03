@@ -1,6 +1,6 @@
 <br>
 <p align="center">
-<a href="https://dsa.jonsam.site" target="_blank">
+<a href="https://dsa.jonsam.site/leetcode" target="_blank">
 <img src="./logo.png" alt="Fancy DSA LeetCode" height="250" width="250"/>
 </a>
 <h1 align="center">Fancy DSA LeetCode 🦄</h1>

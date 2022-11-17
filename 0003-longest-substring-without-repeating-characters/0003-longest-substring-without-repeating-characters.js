@@ -1,25 +1,13 @@
-/**
- * @param {string} s
- * @return {number}
- */
 var lengthOfLongestSubstring = function (s) {
-  const len = s.length;
-  if (!len) return 0;
-  let w = "",
-    max = 0,
-    l = 0,
-    r = l;
+  let ml = 0;
 
-  while (l < len) {
-    const c = s.charAt(r),
-      idx = w.indexOf(c);
-    if (idx !== -1) {
-      w = w.slice(idx + 1);
-      l += idx + 1;
-    }
-    w += c;
-    r++;
-    max = Math.max(max, w.length);
+  for (let i = 0, rst = ""; i < s.length; i++) {
+    const c = s[i],
+          idx = rst.indexOf(c);
+    if (idx >= 0) rst = rst.slice(idx + 1);
+    rst += c;
+    if (rst.length > ml) ml = rst.length;
   }
-  return max;
+
+  return ml;
 };

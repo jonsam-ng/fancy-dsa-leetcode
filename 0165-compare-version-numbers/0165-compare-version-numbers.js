@@ -18,11 +18,12 @@ var compareVersion = function (version1, version2) {
   for (let i = 0; i < maxLen; i++) {
     const subv1 = getSubVersion(i, v1),
       subv2 = getSubVersion(i, v2);
+
     // continue next sub version
     if (subv1 === subv2) continue;
     if (subv1 > subv2) return 1;
     return -1;
   }
-  
+
   return 0;
 };

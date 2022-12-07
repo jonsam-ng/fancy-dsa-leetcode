@@ -1,38 +1,47 @@
-function twoSum(nums, s, sum) {
+var twoSum = function (nums, start, target) {
   const len = nums.length,
-        r = [];
-  if (len - 2 - s < 0) return r;
-  let i = s,
-      j = len - 1;
+    rst = [];
+  let p1 = start,
+    p2 = len - 1;
 
-  while (i < j) {
-    const diff = nums[i] + nums[j];
+  while (p1 < p2) {
+    const n1 = nums[p1],
+      n2 = nums[p2],
+      sum = n1 + n2;
 
-    if (diff === sum) {
-      r.push([nums[i], nums[j]]);
-
-      while (nums[i] === nums[i + 1]) i++;
-
-      while (nums[j] === nums[j - 1]) j--;
-
-      i++, j--;
-    } else if (diff < sum) i++;else j--;
+    if (sum > target) {
+      p2--;
+    } else if (sum < target) {
+      p1++;
+    } else {
+      rst.push([n1, n2]);
+      p2--, p1++;
+    }
   }
 
-  return r;
-}
+  return rst;
+};
 
 var threeSum = function (nums) {
-  const sNums = nums.sort((a, b) => a - b),
-        len = sNums.length,
-        r = [];
-  if (len < 3) return r;
+  const sortedNums = nums.sort((a, b) => a - b),
+    len = nums.length,
+    rst = [],
+    memo = new Set();
+  if (len < 3) return rst;
 
   for (let i = 0; i < len - 2; i++) {
-    if (i !== 0 && nums[i] === nums[i - 1]) continue;
-    const sub = twoSum(sNums, i + 1, -sNums[i]);
-    if (sub.length) r.push(...sub.map(k => [sNums[i], ...k]));
+    const arrs = twoSum(sortedNums, i + 1, -sortedNums[i]);
+    if (!arrs.length) continue;
+    
+    arrs
+      .map((arr) => [...arr, sortedNums[i]].sort((a, b) => a - b))
+      .forEach((res) => {
+        const key = res.join(",");
+        if (!memo.has(key)) {
+          rst.push(res);
+          memo.add(key);
+        }
+      });
   }
-
-  return r;
+  return rst;
 };

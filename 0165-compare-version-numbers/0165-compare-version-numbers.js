@@ -14,16 +14,15 @@ var compareVersion = function (version1, version2) {
   );
   const getSubVersion = (i, v) => parseInt(v[i] ?? 0);
   const maxLen = Math.max(v1.length, v2.length);
-  console.log(maxLen);
 
   for (let i = 0; i < maxLen; i++) {
     const subv1 = getSubVersion(i, v1),
       subv2 = getSubVersion(i, v2);
-    console.log(subv1, subv2);
     // continue next sub version
     if (subv1 === subv2) continue;
     if (subv1 > subv2) return 1;
     return -1;
   }
+  
   return 0;
 };

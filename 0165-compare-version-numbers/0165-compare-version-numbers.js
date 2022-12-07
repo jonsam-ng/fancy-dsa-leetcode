@@ -5,12 +5,12 @@
  */
 var compareVersion = function (version1, version2) {
   if (!version1 || !version2) {
-    throw new Error("Invild version");
+    throw new Error("Invalid version");
   }
 
-  const vertion2Array = (version) => version.split(".").filter(Boolean);
+  const version2Array = (version) => version.split(".").filter(Boolean);
   const [v1, v2] = [version1, version2].map((version) =>
-    vertion2Array(version)
+    version2Array(version)
   );
   const getSubVersion = (i, v) => parseInt(v[i] ?? 0);
   const maxLen = Math.max(v1.length, v2.length);

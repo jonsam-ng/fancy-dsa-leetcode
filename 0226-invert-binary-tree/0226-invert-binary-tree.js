@@ -1,5 +1,10 @@
 var invertTree = function (root) {
-  if (!root) return root;
-  [root.right, root.left] = [invertTree(root.left), invertTree(root.right)];
+  const resolve = (node) => {
+    if(!node) return null;
+    [node.left, node.right] = [node.right, node.left]
+    resolve(node.left);
+    resolve(node.right);
+  }
+  resolve(root)
   return root;
 };

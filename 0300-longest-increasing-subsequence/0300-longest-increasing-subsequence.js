@@ -1,26 +1,39 @@
+function binarySearch(arr, target) {
+  const len = arr.length;
+  if(!arr.length) return -1;
+  let left = 0, right = len - 1;
+  while(left <= right) {
+    const mid = left + ~~((right - left) / 2);
+    if(arr[mid] > target) {
+      right = mid - 1;
+    } else if(arr[mid] < target) {
+      left = mid + 1;
+    } else {
+      // we find it
+      return mid;
+    }
+  }
+  // we want the left pointer which is less bigger than target
+  return left;
+}
 /**
  * @param {number[]} nums
  * @return {number}
  */
 var lengthOfLIS = function (nums) {
-  const len = nums.length,
-    dp = new Array(len).fill(1),
-    path = [];
-  let max = 1;
-  for (let i = 0; i < len; i++) {
-    let j = 0;
-    for (; j < i; j++) {
-      if (nums[j] < nums[i]) {
-        dp[i] = Math.max(dp[i], dp[j] + 1);
-      }
+  const len = nums.length;
+  if(!len) return 0;
+  // initize the first num
+  const seq = [nums[0]];
+  for(let i = 1; i < len; i++) {
+    const n = nums[i];
+    if(n > seq.at(-1)) seq.push(n);
+    // we want the seq as small as posible
+    else {
+      const idx = binarySearch(seq, n);
+      // idx cannot bigger than tail of seq
+      seq[idx] = n;
     }
-    // update path of LIS
-    if (dp[i] > max) {
-      if (max === 1) path.push(nums[j - 1]);
-      path.push(nums[i]);
-    }
-    // now we know LIS of length i
-    max = Math.max(max, dp[i]);
   }
-  return max;
+  return seq.length;
 };

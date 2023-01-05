@@ -25,7 +25,7 @@ var strStr = function (s, p) {
     next = getNext(p);
   for (let i = 0, j = 0; i < n; i++) {
     while (j > 0 && s[i] !== p[j]) j = next[j];
-    if (s[i] == p[j]) j++;
+    if (s[i] === p[j]) j++;
     if (j === m) return i - m + 1;
   }
 

@@ -2,6 +2,7 @@
  * @param {number} x
  * @param {number} n
  * @return {number}
+ * By BS
  */
 var myPow = function (x, n) {
   const hash = [],

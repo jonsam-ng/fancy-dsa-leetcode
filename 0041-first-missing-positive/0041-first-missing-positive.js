@@ -1,6 +1,7 @@
 /**
  * @param {number[]} nums
  * @return {number}
+ * By In-place Hash
  */
 var firstMissingPositive = function (nums) {
   const len = nums.length,
@@ -8,9 +9,9 @@ var firstMissingPositive = function (nums) {
 
   for (let i = 0; i < len; i++) {
     // Placement, 1~len will be in-place
-    while (nums[i] > 0 && nums[i] <= len && nums[nums[i] - 1] !== nums[i])
-      swap(nums[i] - 1, i);
+    while (nums[i] > 0 && nums[i] <= len && nums[nums[i] - 1] !== nums[i]) swap(nums[i] - 1, i);
   }
+  console.log(nums)
 
   for (let i = 0; i < len; i++) {
     if (nums[i] !== i + 1) return i + 1;

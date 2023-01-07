@@ -30,11 +30,9 @@ var insert = function (intervals, newInterval) {
       return rst.concat(intervals.slice(j));
     }
   }
+  
   if (left <= 0) rst = [newInterval, ...intervals];
   else if (left >= len) rst = [...intervals, newInterval];
-  else {
-    rst = intervals;
-    rst.splice(left, 0, newInterval);
-  }
+  else rst = intervals, rst.splice(left, 0, newInterval);
   return rst;
 };

@@ -1,6 +1,7 @@
 /**
  * @param {string} s
  * @return {boolean}
+ * @desc By DFA
  */
 var isNumber = function (s) {
   let state = 0,

@@ -17,15 +17,11 @@ var setZeroes = function (matrix) {
     }
   }
   
-  for(let i = 0; i < rows.length; i++) {
-    for(let j = 0; j < n; j++) {
-      matrix[rows[i]][j] = 0;
-    }
-  }
-  
-  for(let i = 0; i < cols.length; i++) {
-    for(let j = 0; j < m; j++) {
-      matrix[j][cols[i]] = 0;
+  for (let i = 0; i < m; i++) {
+    for (let j = 0; j < n; j++) {
+      if (matrix[i][j] && (rows.includes(i) || cols.includes(j))) {
+        matrix[i][j] = 0;
+      }
     }
   }
   
